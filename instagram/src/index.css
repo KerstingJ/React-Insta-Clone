@@ -26,10 +26,9 @@ nav {
   margin-right: 3rem;
 }
 
-nav i {
-  transform: scale(2);
-  padding-left: 3rem;
-  padding-right: 2.25rem;
+nav i::before {
+  font-size: 2rem;
+  margin: 0 15px;
 }
 
 a {
@@ -37,10 +36,18 @@ a {
   text-decoration: none;
 }
 
-i {
-  transform: scale(2.5);
-  padding-left: 3rem;
-  padding-right: 2.25rem;
+i.head::before {
+  font-size: 3rem;
+  margin-left: 15px;
+}
+
+i::before {
+  font-size: 2rem;
+  padding-left: 2rem;
+}
+
+i:first-child::before {
+  padding-left: 0;
 }
 
 input {
@@ -52,7 +59,24 @@ input {
 
 }
 
+img {
+  width: 100%;
+  height: auto;
+}
+
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
+}
+
+.app {
+  max-width: 100%;
+  overflow: hidden;
+}
+
+.postContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 100px;
 }
