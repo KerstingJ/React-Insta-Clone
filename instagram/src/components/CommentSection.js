@@ -2,10 +2,10 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 function CommentSection(props){
-    console.log(props);
+    
     return (
         <div>
-            {props.comments.map(comment => {
+            {props.comments && props.comments.map(comment => {
                 return <p key={comment.id}><strong>{comment.username}</strong> {comment.text}</p>
             })}
         </div>
@@ -19,7 +19,7 @@ const CommentShape = PropTypes.shape({
 })
 
 CommentSection.propTypes = {
-    comments: PropTypes.arrayOf(CommentShape)
+    comments: PropTypes.arrayOf(CommentShape),
 }
 
 

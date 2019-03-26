@@ -36,6 +36,10 @@ a {
   text-decoration: none;
 }
 
+p {
+  margin: 5px 0;
+}
+
 i.head::before {
   font-size: 3rem;
   margin-left: 15px;

@@ -7,9 +7,9 @@ function SearchBar(props) {
             <BrandBox><i className="head fas fa-camera-retro"></i><BrandH1 className="fancy">Not-Instagram</BrandH1></BrandBox>
             <input placeholder="Search Here" name="searchInput" onChange={props.inputHandler} value={props.searchInput}/>
             <nav>
-                <a href="#"><i className="far fa-compass"></i></a>
-                <a href="#"><i className="far fa-heart"></i></a>
-                <a href="#"><i className="far fa-user"></i></a>
+                <a href="/"><i className="far fa-compass"></i></a>
+                <a href="/"><i className="far fa-heart"></i></a>
+                <a href="/"><i className="far fa-user"></i></a>
             </nav>
         </StyHeader>
     )
