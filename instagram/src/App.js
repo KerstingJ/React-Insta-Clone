@@ -5,10 +5,12 @@ import data from './dummy-data.js'
 
 import SearchBar from './components/SearchBar.js'
 import PostContainer from './components/PostContainer.js'
+import LoginPage from './components/LoginPage.js'
+
+import withAuth from './components/Authenticate.js'
 
 const storageKey = 'notInstagramStorageKey'
 const localData = JSON.parse(window.localStorage.getItem(storageKey));
-console.log(localData);
 
 class App extends Component {
   constructor(props){
@@ -53,23 +55,30 @@ class App extends Component {
     window.localStorage.setItem(storageKey, JSON.stringify(this.state.postData))
   }
 
-  render() {
-
+  PostsPage = props => {
     return (
       <div className="App">
-        <SearchBar inputHandler={this.searchInputHandler}/>
+          <SearchBar inputHandler={this.searchInputHandler}/>
 
-        <div className="postContainer">
-          {this.state.postData.map(post => (
-            <PostContainer
-              key={post.id} 
-              post={post}
-              update={this.updatePost}
-            />
-          ))}
-        </div>
+          <div className="postContainer">
+            {this.state.postData.map(post => (
+              <PostContainer
+                key={post.id} 
+                post={post}
+                update={this.updatePost}
+              />
+            ))}
+          </div>
       </div>
-    );
+    )
+  } 
+
+  render() {
+
+    let View = withAuth(this.PostsPage, LoginPage)
+    console.log(View)
+
+    return <View />;
   }
 }
 
