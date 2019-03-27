@@ -4,7 +4,7 @@ import './App.css';
 import data from './dummy-data.js'
 
 import SearchBar from './components/SearchBar.js'
-import Post from './components/Post.js'
+import PostContainer from './components/PostContainer.js'
 
 const storageKey = 'notInstagramStorageKey'
 const localData = JSON.parse(window.localStorage.getItem(storageKey));
@@ -61,7 +61,7 @@ class App extends Component {
 
         <div className="postContainer">
           {this.state.postData.map(post => (
-            <Post 
+            <PostContainer
               key={post.id} 
               post={post}
               update={this.updatePost}

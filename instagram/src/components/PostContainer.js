@@ -5,7 +5,7 @@ import Styled from 'styled-components'
 import CommentSection from './CommentSection.js'
 
 
-class PostItem extends React.Component {
+class PostContainer extends React.Component {
     constructor(props) {
         super(props)
 
@@ -123,4 +123,4 @@ const LikeSubmit = Styled.button`
     background: none;
 `
 
-export default PostItem;
+export default PostContainer;
