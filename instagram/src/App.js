@@ -7,6 +7,8 @@ import SearchBar from './components/SearchBar.js'
 import Post from './components/Post.js'
 
 const storageKey = 'notInstagramStorageKey'
+const localData = JSON.parse(window.localStorage.getItem(storageKey));
+console.log(localData);
 
 class App extends Component {
   constructor(props){
@@ -21,8 +23,8 @@ class App extends Component {
   }
 
   componentDidMount(){
-    let localData = window.localStorage.getItem(storageKey);
-    this.setState({postData: localData && JSON.parse(localData).length >= 1 ? JSON.parse(localData) : data});
+    let mountLocalData = window.localStorage.getItem(storageKey);
+    this.setState({postData: mountLocalData && JSON.parse(mountLocalData).length >= 1 ? JSON.parse(mountLocalData) : data});
   }
 
   inputHandler = (event) => {
@@ -31,8 +33,8 @@ class App extends Component {
 
   searchInputHandler = (event) =>{
     let searchFor = event.target.value;
-    let searchedData = data.filter(d => {
-      let result = JSON.stringify(d).match(new RegExp(searchFor))
+    let searchedData = localData.filter(d => {
+      let result = JSON.stringify(Object.values(d)).match(new RegExp(searchFor))
       return !!result // bangBang!!
     })
 
