@@ -50,6 +50,7 @@ class PostItem extends React.Component {
                 <PostHead>
                     <Thumbnail alt="user thumbnail image" src={this.props.post.thumbnailUrl}/>
                     <h2>{this.props.post.username}</h2>
+                    <p>{this.props.post.timestamp}</p>
                 </PostHead>
     
                 {/* Image */}
@@ -68,21 +69,12 @@ class PostItem extends React.Component {
                     <div className="likes">{this.props.post.likes} Likes</div>
 
                     {/* Comments Section */}
-                    <CommentSection comments={this.props.post.comments} />
-
-                    {/* Time Stamp */}
-                    <div>{this.props.post.timestamp}</div>
-
-                    {/* Add Comment Section */}
-                    <AddComment onSubmit={event => this.submitComment(event, this.props.update)}>
-                        <PostInput 
-                            name='commentInput'
-                            onChange={this.handleInput}
-                            placeholder="Add a comment..."
-                            value={this.state.commentInput}
-                        ></PostInput>
-                        <i className="fas fa-ellipsis-h"></i>
-                    </AddComment>
+                    <CommentSection 
+                        comments={this.props.post.comments}
+                        submitComment={event => this.submitComment(event, this.props.update)}
+                        handleInput={this.handleInput}
+                        inputValue={this.state.commentInput}
+                    />
     
                 </PostFoot>
             </Post>
@@ -124,17 +116,6 @@ const PostFoot = Styled.div`
 
 `
 
-const AddComment = Styled.form`
-    padding: 10px 0;
-    margin-top: 10px;
-    border-top: 1px solid black;
-`
-
-const PostInput = Styled.input`
-    width: 92%;
-    border: none;
-    text-align: left;
-`
 const LikeSubmit = Styled.button`
     border: none;
     width: auto;
