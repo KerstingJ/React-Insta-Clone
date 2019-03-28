@@ -3,14 +3,16 @@ import Styled from 'styled-components'
 
 function SearchBar(props) {
     return(
-        <StyHeader>
+        <StyHeader login={props.login}>
             <BrandBox><i className="head fas fa-camera-retro"></i><BrandH1 className="fancy">Not-Instagram</BrandH1></BrandBox>
-            <input placeholder="Search Here" name="searchInput" onChange={props.inputHandler} value={props.searchInput}/>
-            <nav>
-                <a href="/"><i className="far fa-compass"></i></a>
-                <a href="/"><i className="far fa-heart"></i></a>
-                <a href="/"><i className="far fa-user"></i></a>
-            </nav>
+            {props.login? null : 
+                [<input placeholder="Search Here" name="searchInput" onChange={props.inputHandler} value={props.searchInput}/>,
+                <nav>
+                    <a href="/"><i className="far fa-compass"></i></a>
+                    <a href="/"><i className="far fa-heart"></i></a>
+                    <a href="/"><i className="far fa-user"></i></a>
+                </nav>
+            ]}
         </StyHeader>
     )
 }
@@ -23,8 +25,7 @@ const StyHeader = Styled.header`
     align-items: center;
 
     border-bottom: 1px solid lightgrey;
-
-    position: fixed;
+    position: ${props => props.login ? "scroll" : "fixed"};
     width: 100%;
     background: white;
 `

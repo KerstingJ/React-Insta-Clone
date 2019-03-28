@@ -2,6 +2,8 @@ import React from 'react'
 import Styled from 'styled-components'
 // import PropTypes from 'prop-types'
 
+
+//import {authKey} from `./Authenticate.js`
 import CommentSection from './CommentSection.js'
 
 
@@ -11,7 +13,7 @@ class PostContainer extends React.Component {
 
         // I know they wanted this in comment Section but this made more sense to me
         this.state = {
-            username: "SpaceWizard",
+            // username: JSON.parse(window.localStorage.getItem(authKey)).username,
             commentInput: ""
         }
     }
