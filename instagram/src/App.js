@@ -19,8 +19,7 @@ class App extends Component {
     this.state = {
       searchInput: "",
       postData: [],
-      isLoggedIn: false,
-      username: ""
+      isLoggedIn: false
     };
   }
 
@@ -75,7 +74,11 @@ class App extends Component {
   PostsPage = props => {
     return (
       <div className="App">
-        <SearchBar inputHandler={this.searchInputHandler} username={this.state.username} setAppState={this.setState.bind(this)}/>
+        <SearchBar 
+          inputHandler={this.searchInputHandler}
+          setAppState={this.setState.bind(this)}
+          login={false}
+        />
 
         <div className="postContainer">
           {this.state.postData.map(post => (
@@ -89,7 +92,7 @@ class App extends Component {
   render() {
     let View = this.state.isLoggedIn ? this.PostsPage : LoginPage;
 
-    return (<View setAppState={this.setState.bind(this)}/>);
+    return (<View setAppState={this.setState.bind(this)} />);
   }
 }
 

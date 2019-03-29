@@ -5,14 +5,16 @@ import getAuthToken, {removeAuth} from './Authenticate.js'
 
 function SearchBar(props) {
     function logOut(){
-        removeAuth();
-        props.setAppState({isLoggedIn: false})
+        if(props.setAppState) {
+            removeAuth();
+            props.setAppState({isLoggedIn: false})
+        }
     }
 
     return(
         <StyHeader login={props.login}>
             <BrandBox><i className="head fas fa-camera-retro"></i><BrandH1 className="fancy">Not-Instagram</BrandH1></BrandBox>
-            {props.login? null : 
+            {props.login ? null : 
                 [<input key="search" placeholder="Search Here" name="searchInput" onChange={props.inputHandler} value={props.searchInput}/>,
                 <nav key="nav">
                     <h2>{getAuthToken().username}</h2>

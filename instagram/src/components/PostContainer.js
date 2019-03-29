@@ -123,6 +123,10 @@ const LikeSubmit = Styled.button`
     width: auto;
     height: auto;
     background: none;
+
+    :focus {
+        outline: none;
+    }
 `
 
 export default PostContainer;

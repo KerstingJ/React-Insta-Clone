@@ -50,7 +50,7 @@ class Login extends React.Component {
     render (){
         return(
             <Wrapper>
-            <Header login/>
+            <Header login={true}/>
             <LoginContainer>
                 {this.state.error ? <Error>{this.state.error}</Error> : null}
                 <form onSubmit={this.doLogin}>
