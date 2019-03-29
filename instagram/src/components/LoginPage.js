@@ -28,12 +28,12 @@ class Login extends React.Component {
         event.preventDefault();
 
         if (!this.isValidInput(this.state.username)){
-            this.setState({error: "Username is not valid."})
+            this.setState({error: "Username is not valid.\nMust be atleast 5 characters long"})
             return;
         }
 
         if (!this.isValidInput(this.state.password)){
-            this.setState({error: "Password is not valid."})
+            this.setState({error: "Password is not valid.\nMust be atleast 5 characters long"})
             return;
         }
 
@@ -44,8 +44,7 @@ class Login extends React.Component {
 
         window.localStorage.setItem(authKey, JSON.stringify(loginToken));
 
-        console.log("im getting this far")
-        this.props.setAppState({isLoggedIn: true});
+        this.props.setAppState({isLoggedIn: true, username: this.state.username});
     }
 
     render (){
@@ -73,6 +72,10 @@ class Login extends React.Component {
                     <button type="submit">Login</button>
                 </form>
             </LoginContainer>
+            <Error>
+                <h3>Do Not Use Real Passwords</h3>
+                <p>This is a fake app, that uses your localstorage to emulate a database</p>
+            </Error>
             </Wrapper>
         )
     }
@@ -89,6 +92,7 @@ const Error = styled.div`
     border: 2px solid lightPink;
     color: red;
     padding: 2rem;
+    margin: 1rem;
 
     text-align: center;
 `

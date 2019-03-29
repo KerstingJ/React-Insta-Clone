@@ -15,7 +15,7 @@ function SearchBar(props) {
             {props.login? null : 
                 [<input key="search" placeholder="Search Here" name="searchInput" onChange={props.inputHandler} value={props.searchInput}/>,
                 <nav key="nav">
-                    <h2>{getAuthToken.username}</h2>
+                    <h2>{getAuthToken().username}</h2>
                     <button onClick={logOut}>Log Out</button>
                 </nav>
             ]}
@@ -34,17 +34,49 @@ const StyHeader = Styled.header`
     position: ${props => props.login ? "scroll" : "fixed"};
     width: 100%;
     background: white;
+    flex-wrap: wrap;
 
-    nav button {
-        border-radius: 3px;
-        border: 1px solid lightgrey;
-        background: inherit;
+    @media (max-width: 750px) {
+        justify-content: space-evenly;
 
-        padding: 10px;
+        input {
+            order: 5;
+            margin-bottom: 5px;
+        }
+    }
 
-        ::hover {
-            background: lightpink;
-            color: white;
+    @media (max-width: 400px) {
+        font-size: 1.5rem;
+    }
+
+    nav {
+        display: flex;
+        align-items: center;
+
+        @media (max-width: 750px) {
+            margin: 15px;
+
+        }
+
+        h2 {
+            margin-right: 2rem;
+            @media (max-width: 550px) {
+                display: none;
+    
+            }
+        }
+
+        button {
+            border-radius: 3px;
+            border: 1px solid lightgrey;
+            background: inherit;
+
+            padding: 10px;
+
+            :hover {
+                border-color: lightpink;
+                color: red;
+            }
         }
     }
 `

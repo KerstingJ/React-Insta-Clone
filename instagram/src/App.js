@@ -19,7 +19,8 @@ class App extends Component {
     this.state = {
       searchInput: "",
       postData: [],
-      isLoggedIn: false
+      isLoggedIn: false,
+      username: ""
     };
   }
 
@@ -74,7 +75,7 @@ class App extends Component {
   PostsPage = props => {
     return (
       <div className="App">
-        <SearchBar inputHandler={this.searchInputHandler} setAppState={this.setState.bind(this)}/>
+        <SearchBar inputHandler={this.searchInputHandler} username={this.state.username} setAppState={this.setState.bind(this)}/>
 
         <div className="postContainer">
           {this.state.postData.map(post => (
