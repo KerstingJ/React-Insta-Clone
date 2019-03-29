@@ -50,9 +50,11 @@ class PostContainer extends React.Component {
             <Post> 
                 {/* Header */}
                 <PostHead>
-                    <Thumbnail alt="user thumbnail image" src={this.props.post.thumbnailUrl}/>
-                    <h2>{this.props.post.username}</h2>
-                    <p>{this.props.post.timestamp}</p>
+                    <div className="left">
+                        <Thumbnail alt="user thumbnail image" src={this.props.post.thumbnailUrl}/>
+                        <h2>{this.props.post.username}</h2>
+                    </div>
+                    <div className="date">{this.props.post.timestamp.split(',')[0]}</div>
                 </PostHead>
     
                 {/* Image */}
@@ -88,6 +90,7 @@ const Post = Styled.div`
     display: inline-flex;
     flex-direction: column;
     align-items: flex-start;
+
     padding: 3px;
     margin: 15px;
     border-radius: 5px;
@@ -101,6 +104,19 @@ const PostHead = Styled.div`
     min-height: 50px;
     display: flex;
     align-items: center;
+    width: 98%;
+
+    display: flex;
+    justify-content: space-between;
+
+    .left {
+        display: flex;
+        align-items: center;
+    }
+    
+    .date {
+        text-align: right;
+    }
 `
 
 const Thumbnail = Styled.img`
