@@ -5,14 +5,17 @@ import Header from './SearchBar';
 import { authKey } from './Authenticate.js'
 
 class Login extends React.Component {
-    constructor(props, forceUpdate){
+    constructor(props){
         super(props);
         this.state = {
             username: "",
-            password: ""
+            password: "",
+            error: ""
         }
+    }
 
-        this.force = forceUpdate;
+    isValidInput(input){
+        return input.trim().length > 5;
     }
 
     handleInput = event => {
@@ -24,6 +27,16 @@ class Login extends React.Component {
 
         event.preventDefault();
 
+        if (!this.isValidInput(this.state.username)){
+            this.setState({error: "Username is not valid."})
+            return;
+        }
+
+        if (!this.isValidInput(this.state.password)){
+            this.setState({error: "Password is not valid."})
+            return;
+        }
+
         const loginToken = {
             username: this.state.username,
             isLoggedIn: true,
@@ -31,15 +44,16 @@ class Login extends React.Component {
 
         window.localStorage.setItem(authKey, JSON.stringify(loginToken));
 
-        this.props.update();
+        console.log("im getting this far")
+        this.props.setAppState({isLoggedIn: true});
     }
 
     render (){
         return(
-            <>
+            <Wrapper>
             <Header login/>
             <LoginContainer>
-                <h1>Login</h1>
+                {this.state.error ? <Error>{this.state.error}</Error> : null}
                 <form onSubmit={this.doLogin}>
                     <input 
                         name="username"
@@ -47,6 +61,7 @@ class Login extends React.Component {
                         value={this.state.username}
                         placeholder="Username"
                     ></input>
+                    <br />
                     <input 
                         type="password"
                         name="password"
@@ -58,18 +73,30 @@ class Login extends React.Component {
                     <button type="submit">Login</button>
                 </form>
             </LoginContainer>
-            </>
+            </Wrapper>
         )
     }
 }
 
-const LoginContainer = styled.div`
-    padding: 30px;
-    margin: 50px auto;
-    margin-left: 40%;
+const Wrapper = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+`
 
-    border-radius: 5px;
-    box-shadow: 0px 2px 5px rgba(0,0,0, 0.4);
+const Error = styled.div`
+    border-radius: 4px;
+    border: 2px solid lightPink;
+    color: red;
+    padding: 2rem;
+
+    text-align: center;
+`
+
+const LoginContainer = styled.div`
+    display: inline-block;
+    padding: 30px;
+    margin: 50px;
 
     h1 {
         text-align: center;

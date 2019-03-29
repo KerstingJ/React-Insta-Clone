@@ -1,16 +1,22 @@
 import React from 'react'
 import Styled from 'styled-components'
 
+import getAuthToken, {removeAuth} from './Authenticate.js'
+
 function SearchBar(props) {
+    function logOut(){
+        removeAuth();
+        props.setAppState({isLoggedIn: false})
+    }
+
     return(
         <StyHeader login={props.login}>
             <BrandBox><i className="head fas fa-camera-retro"></i><BrandH1 className="fancy">Not-Instagram</BrandH1></BrandBox>
             {props.login? null : 
-                [<input placeholder="Search Here" name="searchInput" onChange={props.inputHandler} value={props.searchInput}/>,
-                <nav>
-                    <a href="/"><i className="far fa-compass"></i></a>
-                    <a href="/"><i className="far fa-heart"></i></a>
-                    <a href="/"><i className="far fa-user"></i></a>
+                [<input key="search" placeholder="Search Here" name="searchInput" onChange={props.inputHandler} value={props.searchInput}/>,
+                <nav key="nav">
+                    <h2>{getAuthToken.username}</h2>
+                    <button onClick={logOut}>Log Out</button>
                 </nav>
             ]}
         </StyHeader>
@@ -28,10 +34,20 @@ const StyHeader = Styled.header`
     position: ${props => props.login ? "scroll" : "fixed"};
     width: 100%;
     background: white;
-`
 
-// position: fixed;
-// width: 100%;
+    nav button {
+        border-radius: 3px;
+        border: 1px solid lightgrey;
+        background: inherit;
+
+        padding: 10px;
+
+        ::hover {
+            background: lightpink;
+            color: white;
+        }
+    }
+`
 
 const BrandBox = Styled.div`
     font-size: inherit;

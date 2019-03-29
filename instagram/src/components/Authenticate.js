@@ -6,22 +6,22 @@ const blankToken = {
     isLoggedIn: false,
 }
 
-
-let authToken = window.localStorage.getItem(authKey);
-
-if (!authToken) {
-    window.localStorage.setItem(authKey, JSON.stringify(blankToken))
-    authToken = blankToken;
-} else {
-    authToken = JSON.parse(window.localStorage.getItem(authKey));
+export function removeAuth() {
+    window.localStorage.removeItem(authKey);
 }
 
-const isLoggedIn = authToken.isLoggedIn
+function getAuthToken() {
 
-function withAuth(authView, nonAuthView){
+    let authToken = window.localStorage.getItem(authKey);
 
-    return isLoggedIn ? authView : nonAuthView; // login page
-    
+    if (!authToken) {
+        window.localStorage.setItem(authKey, JSON.stringify(blankToken))
+        authToken = blankToken;
+    } else {
+        authToken = JSON.parse(window.localStorage.getItem(authKey));
+    }
+
+    return authToken;
 }
 
-export default withAuth;
+export default getAuthToken;
