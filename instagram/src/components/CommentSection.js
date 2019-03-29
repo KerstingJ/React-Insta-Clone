@@ -23,7 +23,7 @@ function CommentSection(props){
 }
 
 const CommentShape = PropTypes.shape({
-    id: PropTypes.string,
+    id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
     username: PropTypes.string,
     text: PropTypes.string
 })

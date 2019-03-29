@@ -1,7 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import Header from './SearchBar';
 import { authKey } from './Authenticate.js'
 
 class Login extends React.Component {
@@ -50,41 +49,65 @@ class Login extends React.Component {
     render (){
         return(
             <Wrapper>
-            <Header login={true}/>
-            <LoginContainer>
-                {this.state.error ? <Error>{this.state.error}</Error> : null}
-                <form onSubmit={this.doLogin}>
-                    <input 
-                        name="username"
-                        onChange={this.handleInput}
-                        value={this.state.username}
-                        placeholder="Username"
-                    ></input>
-                    <br />
-                    <input 
-                        type="password"
-                        name="password"
-                        onChange={this.handleInput}
-                        value={this.state.password}
-                        placeholder="Password"
-                    ></input>
-                    <br />
-                    <button type="submit">Login</button>
-                </form>
-            </LoginContainer>
-            <Error>
-                <h3>Do Not Use Real Passwords</h3>
-                <p>This is a fake app, that uses your localstorage to emulate a database</p>
-            </Error>
+                <div className="branding"><i className="head fas fa-camera-retro"></i><h1 className="fancy">Not-Instagram</h1></div>
+                
+                <LoginContainer>
+                    {this.state.error ? <Error>{this.state.error}</Error> : null}
+                    <form onSubmit={this.doLogin}>
+                        <input 
+                            name="username"
+                            onChange={this.handleInput}
+                            value={this.state.username}
+                            placeholder="Username"
+                        ></input>
+                        <br />
+                        <input 
+                            type="password"
+                            name="password"
+                            onChange={this.handleInput}
+                            value={this.state.password}
+                            placeholder="Password"
+                        ></input>
+                        <br />
+                        <button type="submit">Login</button>
+                    </form>
+                </LoginContainer>
+
+                <Error>
+                    <h3>Do Not Use Real Passwords</h3>
+                    <p>This is a fake app, that uses your localstorage to emulate a database</p>
+                </Error>
             </Wrapper>
         )
     }
 }
 
 const Wrapper = styled.div`
+
     display: flex;
     flex-direction: column;
     align-items: center;
+
+    .branding {
+        display: flex;
+        align-items: center;
+        font-size: 3rem;
+
+        text-align: center;
+
+        i:before {
+            font-size: 4rem;
+        }
+
+        h1 {
+            font-family: 'Lobster Two', cursive;
+            font-size: inherit;
+
+            padding-left: 1.5rem;
+            border-left: 1px solid black;
+            margin: 2rem;
+        }
+    }
 `
 
 const Error = styled.div`
@@ -100,14 +123,6 @@ const Error = styled.div`
 const LoginContainer = styled.div`
     display: inline-block;
     padding: 30px;
-    margin: 50px;
-
-    h1 {
-        text-align: center;
-        font-size: 3rem;
-        margin-bottom: 2rem;
-        text-shadow: 0px 2px 5px rgba(0,0,0, 0.4);
-    }
 
     form {
         text-align: center;

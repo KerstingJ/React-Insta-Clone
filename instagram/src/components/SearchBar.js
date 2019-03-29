@@ -12,15 +12,18 @@ function SearchBar(props) {
     }
 
     return(
-        <StyHeader login={props.login}>
-            <BrandBox><i className="head fas fa-camera-retro"></i><BrandH1 className="fancy">Not-Instagram</BrandH1></BrandBox>
-            {props.login ? null : 
-                [<input key="search" placeholder="Search Here" name="searchInput" onChange={props.inputHandler} value={props.searchInput}/>,
-                <nav key="nav">
-                    <h2>{getAuthToken().username}</h2>
-                    <button onClick={logOut}>Log Out</button>
-                </nav>
-            ]}
+        <StyHeader>
+            <BrandBox>
+                <i className="head fas fa-camera-retro"></i>
+                <BrandH1 className="fancy">Not-Instagram</BrandH1>
+            </BrandBox>
+
+            <input key="search" placeholder="Search Here" name="searchInput" onChange={props.inputHandler} value={props.searchInput}/>
+            
+            <nav key="nav">
+                <h2>{getAuthToken().username}</h2>
+                <button onClick={logOut}>Log Out</button>
+            </nav>
         </StyHeader>
     )
 }
@@ -33,7 +36,9 @@ const StyHeader = Styled.header`
     align-items: center;
 
     border-bottom: 1px solid lightgrey;
-    position: ${props => props.login ? "scroll" : "fixed"};
+
+    position: fixed;
+
     width: 100%;
     background: white;
     flex-wrap: wrap;

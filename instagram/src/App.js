@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import "./App.css";
 
 import dataFromFile from "./dummy-data.js";
 
@@ -77,7 +76,6 @@ class App extends Component {
         <SearchBar 
           inputHandler={this.searchInputHandler}
           setAppState={this.setState.bind(this)}
-          login={false}
         />
 
         <div className="postContainer">
