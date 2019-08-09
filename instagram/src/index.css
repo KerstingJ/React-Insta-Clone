@@ -1,3 +1,17 @@
+html {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-size: 62.5%;
+}
+
+*, *:before, *:after {
+  box-sizing: inherit;
+  margin: 0;
+  padding: 0;
+  font-size: 1.6rem;
+}
+
 body {
   margin: 0;
   padding: 0;
@@ -8,7 +22,65 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+nav {
+  margin-right: 3rem;
+}
+
+nav i::before {
+  font-size: 2rem;
+  margin: 0 15px;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+p {
+  margin: 5px 0;
+}
+
+i.head::before {
+  font-size: 3rem;
+  margin-left: 15px;
+}
+
+i::before {
+  font-size: 2rem;
+  padding-left: 2rem;
+}
+
+i:first-child::before {
+  padding-left: 0;
+}
+
+input {
+
+  padding: 5px;
+  border-radius: 3px;
+  border: 1px solid lightgrey;
+  text-align: center;
+
+}
+
+img {
+  width: 100%;
+  height: auto;
+}
+
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
+}
+
+.app {
+  max-width: 100%;
+  overflow: hidden;
+}
+
+.postContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 100px;
 }
